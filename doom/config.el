@@ -101,8 +101,8 @@
                         :desc "Move line down"               "d" #'move-text-down
 
                         (:prefix ("g". "Goto")
-                                 :desc "Goto Definition"     "d" #'evil-goto-definition
                                  :desc "Goto Next"           "n" #'evil-jump-forward
+                                 :desc "Goto Definition"     "d" #'evil-goto-definition
                                  :desc "Goto Previous"       "p" #'evil-jump-backward
                          )
                 )
@@ -110,3 +110,10 @@
 
       ;; TODO org mode, Shift code line up or down (M-S-up/down), save a buffer, multiple cursors,
 )
+
+(defun my/fullscreen-if-not ()
+  "Toggle fullscreen only if Emacs is not already in fullscreen mode."
+  (unless (frame-parameter nil 'fullscreen)
+    (set-frame-parameter nil 'fullscreen 'full)))
+
+(add-hook 'window-setup-hook 'my/fullscreen-if-not)
